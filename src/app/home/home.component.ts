@@ -35,8 +35,12 @@ export class HomeComponent {
   housingService: HousingService = inject(HousingService);
   filteredLocationList: HousingLocation[] = [];
   constructor() {
-    this.housingLocationList = this.housingService.getHousingLocations();
-    this.filteredLocationList = this.housingLocationList;
+    this.housingService
+      .getlHousingLocations()
+      .then((housingLocationList: HousingLocation[]) => {
+        this.housingLocationList = housingLocationList;
+        this.filteredLocationList = housingLocationList;
+      });
   }
 
   filterResults(text: string) {
@@ -48,5 +52,7 @@ export class HomeComponent {
       (housingLocation) =>
         housingLocation?.city.toLowerCase().includes(text.toLowerCase())
     );
+
+    console.log(this.filteredLocationList);
   }
 }
