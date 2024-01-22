@@ -10,7 +10,7 @@ export class HousingService {
 
   constructor() {}
 
-  async getlHousingLocations(): Promise<HousingLocation[]> {
+  async getAllHousingLocations(): Promise<HousingLocation[]> {
     const data = await fetch(this.url);
     return (await data.json()) ?? [];
   }
